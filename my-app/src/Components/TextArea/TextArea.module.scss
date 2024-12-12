@@ -1,0 +1,35 @@
+.textarea {
+    display: flex;
+    flex-direction: column;
+    width: 1120px;
+    height: 273px;
+    justify-content: space-between;
+}
+.textareaTitle {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #313037;
+    text-align: left;
+}
+.textareaField {
+    height: 245px;
+    border-radius: 2px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #313037;
+    padding: 0 14px;
+    font-weight: 400;
+    color: fff;
+    border: 1px solid #8D8E97;
+}
+.textareaField:focus {
+    border: 1px solid red;
+    cursor: text;
+}
+.textareaField::placeholder {
+    color: #8D8E97;
+}
+.textareaField:focus::placeholder {
+    opacity: 0;
+}

@@ -1,0 +1,19 @@
+.header {
+    height: 8.3vh;
+    background-color: #2231AA;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchUserWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.userPoint {
+    text-decoration: none;
+    pointer-events: none;
+    color: #fff;
+}

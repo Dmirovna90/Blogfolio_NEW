@@ -1,0 +1,29 @@
+.userwrap {
+    width: 236px;
+    height: 83px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    background-color: #2231AA;
+    align-items: center;
+}
+.initials {
+    height: 48px;
+    width: 48px;
+    border-radius: 2px;
+    border-radius: 2px;
+    background-color: #5360CD;
+    vertical-align: middle;
+    margin-right: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 48px;
+    text-align: center;
+}
+.username {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 83px;
+    text-align: center;
+}

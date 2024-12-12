@@ -1,0 +1,65 @@
+.navbar {
+    position: absolute;
+    width: 236px;
+    height: 91.7vh;
+    background: #fff;
+    left: -100%;
+    transition: all 0,5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.navbar.active {
+    left: 0%;
+}
+.menuBox {
+    display: flex;
+    flex-direction: column;
+}
+.menuPoint {
+    height: 83px;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 83px;
+    color: #313037;
+    text-decoration: none;
+}
+.menuPoint:hover {
+    color: #2231AA;
+}
+.menuPoint.active {
+    color: #2231AA;
+}
+.buttonThemeWrap {
+    width: 236px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+.buttonTheme {
+    width: 50%;
+    height: 100%;
+    border: 1px solid #E8E8E8;
+    background-color: #fff;
+    cursor: pointer;
+
+}
+.buttonTheme:focus svg {
+    stroke: #313037;
+}
+.userPoint {
+    text-decoration: none;
+    pointer-events: none;
+    color: #fff;
+}
+.titleNavbar {
+    width: 236px;
+    height: 83px;
+    background-color: #E8E8E8;
+    color: #313037;
+    font-size: 16px;
+    font-weight: 600;
+    margin: auto;
+    line-height: 50px;
+}
