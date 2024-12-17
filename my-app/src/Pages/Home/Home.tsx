@@ -8,12 +8,6 @@ const Home = () => {
     return (
         <>
             <h1>Home</h1>
-            {/* <Input title = {'Name'} placeholder = {'Your name'} type = {'password'}/> */}
-            {/* <TextArea title = {'Your Post'} placeholder = {'Add your text'}/> */}
-            {/* <Tabs /> */}
-            {/* <Posts /> */}
-            
-
         </>
     )
 }

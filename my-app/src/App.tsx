@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import AddPost from './Components/AddPost/AddPost';
+import AddPost from './Pages/AddPost/AddPost';
 import Home from './Pages/Home/Home';
 import Layout from './Pages/Layout/Layout';
 import AllPosts from './Pages/AllPosts/AllPosts';

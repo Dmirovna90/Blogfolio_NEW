@@ -1,6 +1,6 @@
-import Button from "../Button/Button";
-import Template from "../Template/Template";
-import Title from "../Title/Title";
+import Button from "../../Components/Button/Button";
+import Template from "../../Components/Template/Template";
+import Title from "../../Components/Title/Title";
 import style from "./AddPost.module.scss";
 
 interface IProps {

@@ -8,7 +8,6 @@ import Tabs from "../../Components/Tabs/Tabs";
 import {ReactComponent as Prev} from "../../assets/prev.svg";
 import {ReactComponent as Next} from "../../assets/next.svg";
 
-// import { useNavigate } from "react-router-dom";
 
 interface IPost {
     id: number;
@@ -18,11 +17,11 @@ interface IPost {
     title: string;
 }
 const AllPosts = () => {
-    const [results, setPosts] = useState([]);
+    const [results, setResults] = useState([]);
     useEffect (() => {
         fetch('https://studapi.teachmeskills.by/blog/posts/?author__course_group=14&format=json&limit=9')
         .then((response) => response.json())
-        .then((json) => setPosts((json.results)))
+        .then((json) => setResults((json.results)))
     },[])
     return (
     <>

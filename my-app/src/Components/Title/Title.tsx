@@ -1,16 +1,14 @@
 import style from "./Title.module.scss"
 interface IProps {
     title?: string;
-    children?: React.ReactNode;
 }
-const Title = ({title, children}: IProps) => {
-    if (title === undefined) {
-        return children
-    }
+const Title = ({title}: IProps) => {
     return (
-        <div>
-            <p className = {style.title}>{title}</p>
-        </div>
+        <>
+            {!!title && <div>
+                <p className = {style.title}>{title}</p>
+            </div> }
+        </>
     )
 }
 export default Title

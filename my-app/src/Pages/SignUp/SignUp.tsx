@@ -6,8 +6,7 @@ import Title from "../../Components/Title/Title"
 
 const SignUp = () => {
     return (
-        <>
-            <Template 
+        <Template 
             title = {"Sign Up"} 
             inputA = {<Input type={"text"} title={"Name"} placeholder={"Your Name"} />}
             inputB = {<Input type={"text"} title={"Email"} placeholder={"Your Email"} />}
@@ -16,10 +15,8 @@ const SignUp = () => {
             button = {<Button buttonType = {'primary'}>Sign Up</Button>}
             text = {`Already have an account?`}
             link = {<NavLink to={'/sign-in'}>Sign In</NavLink>}
-            >
-
-            </Template>
-        </>
+        >
+        </Template>
     )
 }
 export default SignUp
