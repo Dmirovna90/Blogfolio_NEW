@@ -20,6 +20,7 @@
     width: 256px;
     height: 244px;
     overflow: hidden;
+    cursor: pointer;
 }
 .imgCard {
     object-fit: cover;
@@ -31,7 +32,6 @@
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-    color: #8D8E97;
     margin-bottom: 8px;    
 }
 .title {
@@ -39,7 +39,6 @@
     font-weight: 700;
     line-height: 44px;
     text-align: left;
-    color: #313037;
     margin-bottom: 24px;
 }
 .title:hover {
@@ -51,7 +50,6 @@
     font-weight: 400;
     line-height: 28px;
     text-align: left;
-    color: #8D8E97;
     margin-bottom: 31px;
 }
 .icons {
@@ -62,4 +60,9 @@
 }
 .icon {
     margin-right: 24px;
+}
+.popup_wraping {
+    width: 329px;
+    height: 324px;
+    overflow: hidden;
 }

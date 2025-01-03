@@ -3,15 +3,16 @@ interface IProps {
     children: React.ReactNode;
     isDisabled?: boolean;
     buttonType?: 'primary' | 'secondary' | 'secondary2';
-    onClick?: (() => void);
+    click?: (() => void);
 }
 const Button = ({
     children,
     isDisabled = false,
     buttonType = 'primary',
+    click,
 } : IProps) => {
     return(
-        <button className = {style[buttonType]} disabled= {isDisabled} onClick = {() => console.log('click')}>
+        <button className = {style[buttonType]} disabled= {isDisabled} onClick = {click}>
             {children}
         </button>
     )

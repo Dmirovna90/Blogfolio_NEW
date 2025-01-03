@@ -1,9 +1,9 @@
 .active {
-    background-color: #fff;
-    color: #313037;
+    background-color: unset;
+    color: unset;
     border: none;
     width: 25%;
-    border-bottom: 2px solid #313037;
+    border-bottom: 2px solid;
     font-size: 16px;
     line-height: 24px;
     font-weight: 600;
@@ -17,11 +17,12 @@
 }
 .tab {
     width: 25%;
-    background-color: #fff;
+    background-color: unset;
     border: none;
     font-size: 16px;
     line-height: 24px;
     font-weight: 600;
+    color: unset;
 }
 .tab:hover {
     color: #2231AA;

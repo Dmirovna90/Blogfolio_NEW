@@ -8,13 +8,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.middlePostWrap {
-    display: flex;
-    flex-direction: row;
-    width: 736px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
 .prevNextWrap {
     display: flex;
     flex-direction: row;
@@ -32,7 +25,6 @@
 }
 .arrowPrev{
 margin-right: 24px;
-cursor: pointer;
 }
 .prev {
     font-size: 16px;
@@ -62,19 +54,13 @@ cursor: pointer;
 }
 .arrowNext{
     margin-left: 24px;
-    cursor: pointer;
 }
 
-.page {
+.pageNumbers {
     font-size: 16px;
     font-weight: 600;
     line-height: 56px;
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-    background-color: unset;
-    border: none;
-    margin-right: 32px;
-    cursor: pointer;
-    color: unset;
 }

@@ -1,21 +1,26 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    width: 352px;
+    width: 1120px;
     border-bottom: 1px solid #DADADA;
     margin-bottom: 20px;
 }
-
+.wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 45px;
+}
 .wraptextcontent {
     display: flex;
     flex-direction: column;
+    width: 992px;
     justify-content: flex-start;
 }
 .wrapimg {
-    width: 352px;
-    height: 246px;
+    width: 96px;
+    height: 96px;
     overflow: hidden;
-    cursor: pointer;
 }
 .imgCard {
     object-fit: cover;
@@ -31,31 +36,20 @@
 }
 .title {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 28px;
     text-align: left;
-    margin-bottom: 28px;
 }
 .title:hover {
     color: #2231AA;
     cursor: pointer;
 }
-.wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+
 .icons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 40px;
 }
 .icon {
     margin-right: 24px;
-}
-.popup_wraping {
-    width: 329px;
-    height: 324px;
-    overflow: hidden;
 }

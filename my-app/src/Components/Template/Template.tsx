@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom"
 import Title from "../Title/Title";
 import style from './Template.module.scss';
 import { useSelector } from "react-redux";
-import { Fragment, useEffect } from "react";
+import { Fragment, JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect } from "react";
 
-const Template = (props) => {
+const Template = (props: { title: string | undefined; children: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) => {
     const navigate = useNavigate();
     return (
         <>
@@ -13,16 +13,7 @@ const Template = (props) => {
                 <Title title = {props.title}/>
             </div>
             <div className = {style.templateBody}>
-                {props?.inputA}
-                {props?.inputB}
-                {props?.inputC}
-                {props?.inputD}
-                {props?.inputE}
-                {props?.textB}
-                {props?.button}
-                <p className = {style.text}>{props?.text} <span className = {style.link}>{props?.link}</span>{props?.textA}</p>
-                {props?.buttonA}
-
+                {props.children}
             </div>
         </>
     )

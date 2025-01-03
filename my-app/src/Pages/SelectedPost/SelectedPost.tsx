@@ -7,7 +7,6 @@ import {ReactComponent as Bookmark} from '../../assets/bookmark.svg';
 import {ReactComponent as Prev} from '../../assets/prev.svg';
 import {ReactComponent as Next} from '../../assets/next.svg';
 
-
 const SelectedPost = () => {
     const [result, setResult] = useState({title: '', image: '', description: ''})
     const navigate = useNavigate();

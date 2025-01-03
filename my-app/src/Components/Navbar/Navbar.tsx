@@ -10,14 +10,15 @@ import InputOutput from '../InputOutput/InputOutput';
 
 const Navbar = () => {
     const {isActive} = useSelector((state) => state.active);
+    const toggleSideBar = () => dispatch(toggleActive());
     const dispatch = useDispatch();
     return (
         <div className={!isActive ? style.navbar : `${style.navbar} ${style.active}`}>
             <div className = {style.menuBox}>
-                <NavLink to = '/user' className = {style.userPoint} onClick={() => dispatch(toggleActive())}><User userName= {'Artem Malkin'}/></NavLink>
-                <NavLink to = '/' className = {style.menuPoint} onClick={() => dispatch(toggleActive())}>Home</NavLink>
+                <NavLink to = '/user' className = {style.userPoint} onClick = {toggleSideBar}><User userName= {'Artem Malkin'}/></NavLink>
+                <NavLink to = '/' className = {style.menuPoint} onClick = {toggleSideBar}>Home</NavLink>
                 {/* <NavLink to = '/add-post' className = {style.menuPoint} onClick={() => dispatch(toggleActive())}>Add Post</NavLink> */}
-                <NavLink to = '/posts' className = {style.menuPoint} onClick={() => dispatch(toggleActive())}>All Posts</NavLink>
+                <NavLink to = '/posts' className = {style.menuPoint} onClick = {toggleSideBar}>All Posts</NavLink>
 
             </div>
             <div className = {style.menuBox}>

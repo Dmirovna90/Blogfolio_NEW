@@ -1,16 +1,16 @@
 import Button from "../../Components/Button/Button";
 import Template from "../../Components/Template/Template";
+import style from '../SuccessfulConfirmation/SuccessfulConfirmation.module.scss';
 
 const Success = () => {
     return (
-        <Template 
-        title = {"Success"}
-        textB = {`Email confirmed. Your registration is now completed.`}
-        text = {' Your registration is now completed`'}
-
-        buttonA = {<Button buttonType = {'primary'}>Go to home</Button>}
-
-        />
+        <Template title = {"Success"}>
+            <div className = {style.textWrap}>
+                <p>Email confirmed.</p>
+                <p>Your registration is now completed</p>
+            </div>
+            <Button buttonType = {'primary'}>Go to home</Button>
+        </Template>
     )
 }
 export default Success

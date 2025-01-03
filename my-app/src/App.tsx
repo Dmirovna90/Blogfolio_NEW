@@ -9,6 +9,7 @@ import SuccessfulConfirmation from './Pages/SuccessfulConfirmation/SuccessfulCon
 import SignIn from './Pages/SignIn/SignIn';
 import Success from './Pages/Success/Success';
 import SelectedPost from './Pages/SelectedPost/SelectedPost';
+import SearchResults from './Pages/SearchResults/SearchResults';
 
 const App = () => {
 
@@ -24,7 +25,7 @@ const App = () => {
           <Route path = "/successfully" element = {<SuccessfulConfirmation/>} />
           <Route path = "/sign-in" element = {<SignIn />} />
           <Route path = "/success" element = {<Success />} />
-
+          <Route path = '/search-results' element = {<SearchResults/>} />
        </Route>
     </Routes>
    </>
