@@ -84,9 +84,6 @@ const AllPosts = () => {
     }  
     return (
         <>
-        <div className = {style.container}>
-            <Title title = 'Blog' />
-            <Tabs/>
             <div className = {style.postsWrap}>
                 <div className = {style.middlePostWrap}>
                     {posts.map(({id, image, date, text, title, index}: IPost) => {
@@ -126,7 +123,6 @@ const AllPosts = () => {
                     </div>
                 </div>                
             </div>
-        </div>
     </>
     )
 }
