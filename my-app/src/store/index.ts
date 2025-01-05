@@ -5,6 +5,9 @@ import postsSlice from './postsSlice';
 import popUpSlice from "./popUpSlice";
 import signUpSlice from './signUpSlice'
 import signInSlice from './signInSlice';
+import userMeSlice from './userMeSlice';
+import myPostsSlice from './myPostsSlice';
+import addPostSlice from './addPostSlice';
 export default configureStore ({
     reducer: {
         theme: themeSlice,
@@ -13,5 +16,8 @@ export default configureStore ({
         activePop: popUpSlice,
         user: signUpSlice,
         signIn: signInSlice,
+        userMe: userMeSlice,
+        myPosts: myPostsSlice,
+        addPost: addPostSlice,
     }
 })

@@ -1,3 +1,15 @@
 .link {
     margin-bottom: 48px;
 }
+.button {
+    border-style: none;
+    background-color: unset;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #2231AA;
+}

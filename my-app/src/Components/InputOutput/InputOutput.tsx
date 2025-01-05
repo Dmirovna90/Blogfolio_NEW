@@ -1,16 +1,13 @@
 import style from "./InputOutput.module.scss"
 interface IProps {
-    title?: string;
-    children?: React.ReactNode;
+    children?: string;
+    onClick?: any;
 }
-const InputOutput = ({title, children}: IProps) => {
-    if (title === undefined) {
-        return children
-    }
+const InputOutput = ({ children, onClick}: IProps) => {
     return (
-        <div className = {style.titleInputOutput}>
-            <p>{title}</p>
-        </div>
+        <button className = {style.titleInputOutput} onClick = {onClick}>
+            {children}
+        </button>
     )
 }
 export default InputOutput

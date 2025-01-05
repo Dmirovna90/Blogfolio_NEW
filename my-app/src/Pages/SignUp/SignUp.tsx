@@ -1,10 +1,11 @@
-import { NavLink, useNavigate } from "react-router-dom"
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom"
 import Button from "../../Components/Button/Button"
 import Input from "../../Components/Input/Input"
 import Template from "../../Components/Template/Template"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { signUpUser } from "../../store/signUpSlice"
+import style from '../SignIn/SignIn.module.scss'
 
 const SignUp = ({uid, token}: any) => {
     const [registrationData, setRegistrationData] = useState({
@@ -26,6 +27,17 @@ const SignUp = ({uid, token}: any) => {
           [name]: value,
         }));
     };
+    // const signInHandler = () => {
+    //     navigate('/sign-in', {state: {from: location}});
+    // }
+    const { pathname } = (useLocation().state || { from: `/activate/${uid}/${token}` }).from;
+    const { activated } = useSelector((state) => state.user);
+    const location = useLocation();
+    useEffect(() => {
+        if (activated) {
+            navigate(pathname, {replace: true})
+        }
+    }, [activated])
     return (
         <Template title = {"Sign Up"}>
             <form onSubmit = {formHandler}>
@@ -34,7 +46,7 @@ const SignUp = ({uid, token}: any) => {
                 <Input type={"password"} title={"Password"} placeholder={"Your Password"} name = {'password'} value = {registrationData.password} onChange = {inputHandler}/>
                 {/* <Input type={"password"} title={"Confirm password"} placeholder={"Confirm password"} name = {'password'} value = {registraionData.password} onChange = {inputHandler}/> */}
                 <Button buttonType = {'primary'} type = {"submit"} click = {() => navigate(`/activate/${uid}/${token}`)}>Sign Up</Button>
-                <p>Already have an account? <NavLink to={'/sign-in'}>Sign In</NavLink></p>  
+                <p>Already have an account? <Link to = {'/sign-in'} className = {style.button}>Sign In</Link></p>  
             </form>
         
         </Template>

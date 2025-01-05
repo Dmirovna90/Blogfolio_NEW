@@ -66,6 +66,7 @@ const signUpSlice = createSlice ({
         builder.addCase(signUpUser.fulfilled, (state, action) => {
           state.user = action.payload;
           state.error = null;
+          state.activated = true;
         });
         builder.addCase(signUpUser.rejected, (state, action) => {
           state.user = null;
