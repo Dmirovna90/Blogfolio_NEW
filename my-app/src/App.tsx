@@ -1,11 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import AddPost from './Pages/AddPost/AddPost';
-import Home from './Pages/Home/Home';
 import Layout from './Pages/Layout/Layout';
-import AllPosts from './Pages/AllPosts/AllPosts';
 import SignUp from './Pages/SignUp/SignUp';
-import SuccessfulConfirmation from './Pages/SuccessfulConfirmation/SuccessfulConfirmation';
 import SignIn from './Pages/SignIn/SignIn';
 import Success from './Pages/Success/Success';
 import SelectedPost from './Pages/SelectedPost/SelectedPost';
@@ -16,6 +13,7 @@ import ProtectedRoute from './Pages/ProtectedRoute/ProtectedRoute';
 import Profile from './Pages/Profile/Profile';
 import MyPosts from './Pages/MyPosts/MyPosts';
 import SelectedMyPost from './Pages/SelectedMyPost/SelectedMyPost';
+import Activate from './Pages/Activate/Activate';
 
 const App = () => {
 
@@ -28,7 +26,7 @@ const App = () => {
           <Route path = "/" element = {<Posts />} />
           <Route path = "/:result" element = {<SelectedPost />} />
           <Route path = "/sign-up" element = {<SignUp />} />
-          <Route path = "activate/:uid/:token" element = {<SuccessfulConfirmation/>} />
+          <Route path = "activate/:uid/:token" element = {<Activate/>} />
           <Route path = "/sign-in" element = {<SignIn />} />
           <Route path = "/success" element = {<Success />} />
           <Route path = "/profile" element = {<Profile />} />

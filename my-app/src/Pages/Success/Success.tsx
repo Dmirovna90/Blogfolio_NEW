@@ -1,6 +1,6 @@
 import Button from "../../Components/Button/Button";
 import Template from "../../Components/Template/Template";
-import style from '../SuccessfulConfirmation/SuccessfulConfirmation.module.scss';
+import style from '../Activate/Activate.module.scss';
 
 const Success = () => {
     return (

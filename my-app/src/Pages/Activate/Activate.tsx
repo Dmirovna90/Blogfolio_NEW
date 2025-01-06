@@ -1,12 +1,12 @@
 import Button from "../../Components/Button/Button";
 import Template from "../../Components/Template/Template";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import style from './SuccessfulConfirmation.module.scss';
+import style from './Activate.module.scss';
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { activateUser } from "../../store/SignUpSlice";
+import { activateUser } from "../../store/signUpSlice";
 
-const SuccessfulConfirmation = () => {
+const Activate = () => {
     const data = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -23,4 +23,4 @@ const SuccessfulConfirmation = () => {
         </Template>
     )
 }
-export default SuccessfulConfirmation;
+export default Activate;
