@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const activeSlice = createSlice({
-    name: 'active',
+const searchSlice = createSlice({
+    name: 'search',
     initialState: {
         isActive: false,
     },
     reducers:{
-        toggleActive(state) {
+        searchActive(state) {
             if(!state.isActive) state.isActive = true
             else state.isActive = false
         },
     }
 });
-export const {toggleActive} = activeSlice.actions;
-export default activeSlice.reducer;
+export const {searchActive} = searchSlice.actions;
+export default searchSlice.reducer;

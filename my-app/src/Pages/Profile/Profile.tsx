@@ -9,6 +9,7 @@ const Profile = () => {
     useEffect(() =>{
         if(!auth) dispatch(getUserInfo())
     }, [])
+    
     return (
         <>
         <div>Profile</div>

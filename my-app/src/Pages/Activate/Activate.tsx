@@ -8,7 +8,7 @@ import { activateUser } from "../../store/signUpSlice";
 
 const Activate = () => {
     const data = useParams();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const navigate = useNavigate();
     useEffect(() => {
       dispatch(activateUser(data));

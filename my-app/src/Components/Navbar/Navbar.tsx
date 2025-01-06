@@ -23,7 +23,11 @@ const Navbar = () => {
     return (
         <div className={!isActive ? style.navbar : `${style.navbar} ${style.active}`}>
             <div className = {style.menuBox}>
-                <NavLink to = '/user' className = {style.userPoint} onClick = {toggleSideBar}><User userName= {'Artem Malkin'}/></NavLink>
+                {auth && (
+                    <>
+                        <NavLink to = '/user' className = {style.userPoint} onClick = {toggleSideBar}><User userName= {'Artem Malkin'}/></NavLink>
+                    </>
+                )}
                 <NavLink to = '/' className = {style.menuPoint} onClick = {toggleSideBar}>Home</NavLink>
                {auth && (
                 <>

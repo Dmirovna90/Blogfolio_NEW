@@ -1,0 +1,14 @@
+.search {
+    height: 56px;
+    border-radius: 2px;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 0 14px;
+    font-weight: 400;
+    color: fff;
+    border: 1px solid #8D8E97;
+    opacity: 0;
+}
+.search.active {
+    opacity: 1;
+}

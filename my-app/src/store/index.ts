@@ -8,6 +8,7 @@ import signInSlice from './signInSlice';
 import userMeSlice from './userMeSlice';
 import myPostsSlice from './myPostsSlice';
 import addPostSlice from './addPostSlice';
+import searchSlice from './searchSlice';
 export default configureStore ({
     reducer: {
         theme: themeSlice,
@@ -19,5 +20,6 @@ export default configureStore ({
         userMe: userMeSlice,
         myPosts: myPostsSlice,
         addPost: addPostSlice,
+        search: searchSlice,
     }
 })
