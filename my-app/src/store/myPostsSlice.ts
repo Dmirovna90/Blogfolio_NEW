@@ -2,11 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getMyPosts = createAsyncThunk(
     'myPosts/getMyPosts',
-    async(_, {rejectWithValue}) => {
+    async(objectFromMyPostsPage, {rejectWithValue}) => {
+        const {limit, offset, path}: any = objectFromMyPostsPage;
         try {
             const access = localStorage.getItem('access')
             const response = await fetch(
-                "https://studapi.teachmeskills.by/blog/posts/my_posts/?limit=10",
+                `https://studapi.teachmeskills.by/blog/posts/my_posts/?${path}&limit=${limit}&offset=${offset}`,
                 {
                     method: "GET",
                     headers: {
@@ -35,11 +36,22 @@ const myPostsSlice = createSlice ({
         myPosts: [],
         error: null as null | string,
         isLoading: false,
+        currentPage: 1,
+        itemsPerPage: 10,
+        totalItems: 0,
+        select: [],
+        },
+    reducers: {
+        setPage: (state, action) => {
+            state.currentPage = action.payload
+        },
+        selectPost(state, action) {
+            state.select = action.payload;
+        },       
     },
-    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getMyPosts.fulfilled, (state, action) => {
-            (state.myPosts = action.payload), (state.isLoading = false);
+            (state.myPosts = action.payload), (state.isLoading = false), (state.totalItems = action.payload.count);
         });
         builder.addCase(getMyPosts.pending, (state) => {
             (state.error = null), (state.isLoading = true);
@@ -50,4 +62,5 @@ const myPostsSlice = createSlice ({
         });        
     },
 });
+export const {setPage, selectPost} = myPostsSlice.actions;
 export default  myPostsSlice.reducer

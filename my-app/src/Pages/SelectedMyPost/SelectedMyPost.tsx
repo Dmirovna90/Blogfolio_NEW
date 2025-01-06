@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyPosts } from "../../store/myPostsSlice";
-import style from './MyPosts.module.scss';
+import { getMyPosts, selectPost } from "../../store/myPostsSlice";
+import style from './SelectedMyPost.module.scss';
 import Title from "../../Components/Title/Title";
 import CardPostMiddle from "../../Components/CardPost/CardPostMiddle/CardPostMiddle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { setPage } from "../../store/myPostsSlice";
 import {ReactComponent as Prev} from '../../assets/prev.svg';
 import {ReactComponent as Next} from '../../assets/next.svg';
@@ -16,16 +16,20 @@ interface IPost {
   title: string;
   index: number;
 }
-const MyPosts = () => {
+const SelectedMyPost = () => {
     const dispatch = useDispatch();
-    const {myPosts, isLoading, currentPage, itemsPerPage, totalItems} = useSelector((state) => state.myPosts);
+    const data = useParams();
+    const {myPosts, isLoading, currentPage, itemsPerPage, totalItems, select, post} = useSelector((state) => state.myPosts);
+        
     const navigate = useNavigate();
     useEffect(() => {
         dispatch(getMyPosts({
           limit: itemsPerPage,
           offset: (currentPage - 1) * itemsPerPage,
+          path: data,
         }));
     }, []);
+    
     const handlerPageChange = (pageNumber: number) => {
         dispatch(setPage(pageNumber))
     }
@@ -55,7 +59,7 @@ const MyPosts = () => {
           )
       };
       return pageNumber;
-    }
+    } 
     return(
         <div className = {style.container}>
         {isLoading ? (
@@ -65,15 +69,27 @@ const MyPosts = () => {
             <div className = {style.crumbs}>
                <button className = {style.btnHome} onClick = {() => navigate('/')}>Home</button>
             </div>  
-            <Title title="My Posts"/>
-            <div className = {style.middlePostWrap}>
+            <div>
+                {myPosts.map(() => {
+                return (
+                    <div key = {myPosts.id}>
+                      <Title title = {myPosts.title}/>
+                        <h1>{myPosts.title}</h1>
+                        <div><img src={myPosts.image}></img></div>
+                    </div>
+                    
+
+                )})}
+            </div>
+                    
+            {/* <div className = {style.middlePostWrap}>
                 {myPosts.map(({id, image, date, text, title}: IPost) => {
                   return (
                     <div key={id}>
                       <CardPostMiddle id ={id} image ={image} date = {date} title = {title} />
                     </div>)
                   })}
-            </div>
+            </div> */}
             <div className = {style.prevNextWrap}>
                 <div className = {style.prevWrap}>
                     <div className = {style.arrowPrev}>
@@ -100,4 +116,4 @@ const MyPosts = () => {
       </div>
     )
 };
-export default MyPosts;
+export default SelectedMyPost;

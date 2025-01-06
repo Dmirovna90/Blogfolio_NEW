@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import ImageUploading from "react-images-uploading";
+import Button from "../Button/Button";
+import style from './ImageUploader.module.scss';
 
 const ImageUploader = ({ onImageSelect, remove }) => {
   const [images, setImages] = useState([]);
@@ -34,25 +36,29 @@ const ImageUploader = ({ onImageSelect, remove }) => {
           dragProps,
         }) => (
           // write your building UI
-          <div className="upload__image-wrapper">
+          <div>
+            <div className = {style.buttonWrap}>
             <button
-              style={isDragging ? { color: "red" } : undefined}
+            className = {isDragging ? style.button : `${style.button} ${style.secondary}`}             
               onClick={onImageUpload}
               {...dragProps}
             >
               Click or Drop here
             </button>
             &nbsp;
-            <button onClick={onImageRemoveAll}>Remove all images</button>
+            <Button buttonType="secondary" onClick={onImageRemoveAll}>Remove all images</Button>
+            </div>
+            <div>
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
-                <img src={image["data_url"]} alt="" width="100" />
+                <img src={image["data_url"]} alt="" width="300" />
                 <div className="image-item__btn-wrapper">
-                  <button onClick={() => onImageUpdate(index)}>Update</button>
-                  <button onClick={() => onImageRemove(index)}>Remove</button>
+                  <button className = {style.buttonImg} onClick={() => onImageUpdate(index)}>Update</button>
+                  <button className = {style.buttonImg} onClick={() => onImageRemove(index)}>Remove</button>
                 </div>
               </div>
             ))}
+          </div>
           </div>
         )}
       </ImageUploading>

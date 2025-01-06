@@ -21,7 +21,7 @@ const SelectedPost = () => {
     return (
         <div className = {style.container}>
             <div className = {style.crumbs}>
-               <button className = {style.btnHome} onClick = {() => navigate('/posts')}>Home</button>
+               <button className = {style.btnHome} onClick = {() => navigate('/')}>Home</button>
                <button className = {style.btnPost} onClick = {() => navigate('')}>Post {path.result}</button>
             </div>      
             <h1 className = {style.postTitle}>{result.title}</h1>

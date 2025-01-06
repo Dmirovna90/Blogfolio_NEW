@@ -1,0 +1,38 @@
+.buttonWrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1120px;
+    margin-bottom: 10px;
+}
+.button {
+    height: 56px;
+    width: 544px;
+    background-color: #E8E8E8;
+    color: red;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+}
+.button:hover {
+    background-color: #DADADA;
+    cursor: pointer;
+}
+.secondary {
+    color: #313037;
+}
+.buttonImg {
+    height: 56px;
+    width: 150px;
+    background-color: #E8E8E8;
+    color: #313037;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+}
+.buttonImg:hover {
+    background-color: #DADADA;
+    cursor: pointer;
+}
