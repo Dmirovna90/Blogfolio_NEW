@@ -26,6 +26,7 @@ const postsSlice = createSlice({
         ordering: '',
         loading: false,
         error: null as string | null,
+        isFavorite: false,
     },
     reducers: {
         setPage: (state, action) => {
@@ -35,8 +36,12 @@ const postsSlice = createSlice({
             state.searchQuery = action.payload
         },
         setOrdering: (state, action) => {
-            state.searchQuery = action.payload
-        }
+            state.ordering = action.payload
+        },
+        getFavorite(state) {
+            if(!state.isFavorite) state.isFavorite = true
+            else state.isFavorite = false
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchPosts.pending, (state) => {
@@ -53,5 +58,5 @@ const postsSlice = createSlice({
         })
     },
 });
-export const {setPage, setSearchQuery, setOrdering} = postsSlice.actions;
+export const {setPage, setSearchQuery, setOrdering, getFavorite} = postsSlice.actions;
 export default postsSlice.reducer;

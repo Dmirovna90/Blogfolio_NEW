@@ -4,8 +4,11 @@
     width: 352px;
     border-bottom: 1px solid #DADADA;
     margin-bottom: 20px;
+    // background-color: aqua;
 }
-
+// .wrapper.wrapperIsFavorite{
+//     background-color: red;
+// }
 .wraptextcontent {
     display: flex;
     flex-direction: column;
@@ -58,4 +61,8 @@
     width: 329px;
     height: 324px;
     overflow: hidden;
+}
+.iconBtn{
+    background-color: unset;
+    border: unset;
 }

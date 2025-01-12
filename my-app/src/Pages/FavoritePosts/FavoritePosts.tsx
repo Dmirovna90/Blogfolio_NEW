@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CardPostMiddle from "../../Components/CardPost/CardPostMiddle/CardPostMiddle";
 import CardPostSmall from "../../Components/CardPost/CardPostSmall/CardPostSmall";
 import Title from "../../Components/Title/Title";
-import style from './AllPosts.module.scss'
+import style from './FavoritePosts.module.scss'
 import Tabs from "../../Components/Tabs/Tabs";
 import {ReactComponent as Prev} from "../../assets/prev.svg";
 import {ReactComponent as Next} from "../../assets/next.svg";
@@ -16,9 +16,9 @@ interface IPost {
     date: string;
     title: string;
     index: number;
-    isFavorite: boolean;
+    isFavorite?: boolean;
 }
-const AllPosts = () => {
+const FavoritePosts = () => {
     const dispatch = useDispatch<any>();
     const navigate = useNavigate();
     const {posts, loading, error, currentPage, itemsPerPage, totalItems, searchQuery, ordering} = useSelector((state) => state.posts);
@@ -87,20 +87,20 @@ const AllPosts = () => {
         <>
             <div className = {style.postsWrap}>
                 <div className = {style.middlePostWrap}>
-                    {posts.map(({id, image, date, text, title, index}: IPost) => {
+                    {posts.map(({id, image, date, text, title, index, isFavorite}: IPost) => {
                         return (
                         <div key={id}>
-                            <CardPostMiddle id ={id} image ={image} date = {date} title = {title} />
+                        <CardPostMiddle isFavorite = {isFavorite} id ={id} image ={image} date = {date} title = {title} />
                         </div>)
                     })}
                 </div>
                 <div className = {style.smallPostWrap}>
                     {posts.map(({id, image, date, text, title, index}: IPost) => {
                         return (
-                            <div key={id}>
-                                <CardPostSmall id ={id} image ={image} date = {date} title = {title}/>
-                            </div>)
-                    })}
+                        <div key={id}>
+                        <CardPostSmall id ={id} image ={image} date = {date} title = {title}/>
+                </div>)
+            })}
                 </div>
             </div>
             <div className = {style.prevNextWrap}>
@@ -127,6 +127,6 @@ const AllPosts = () => {
     </>
     )
 }
-export default AllPosts
+export default FavoritePosts
 
 

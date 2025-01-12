@@ -25,7 +25,7 @@ const Search = () => {
             searchQuery: searchQuery,
           })
         );
-        dispatch(setPage(1));
+        // dispatch(setPage(1));
       };
       const handlerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;

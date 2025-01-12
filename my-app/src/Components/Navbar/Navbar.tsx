@@ -33,11 +33,12 @@ const Navbar = () => {
                 <>
                     <NavLink to = '/add-post' className = {style.menuPoint} onClick={toggleSideBar}>Add Post</NavLink>
                     <NavLink to = '/my-posts' className = {style.menuPoint} onClick = {toggleSideBar}>My Posts</NavLink>
+                    <NavLink to = '/profile' className = {style.menuPoint} onClick = {toggleSideBar}>Profile</NavLink>
+
                 </>
                )}
                 <NavLink to = '/' className = {style.menuPoint} onClick = {toggleSideBar}>All Posts</NavLink>
 
-                <NavLink to = '/profile' className = {style.menuPoint} onClick = {toggleSideBar}>Profile</NavLink>
 
 
             </div>

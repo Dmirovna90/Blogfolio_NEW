@@ -6,30 +6,36 @@ import {ReactComponent as Down} from '../../assets/down.svg';
 import {ReactComponent as Bookmark} from '../../assets/bookmark.svg';
 import {ReactComponent as Prev} from '../../assets/prev.svg';
 import {ReactComponent as Next} from '../../assets/next.svg';
+import { useDispatch, useSelector } from "react-redux";
+import { getPostInfo } from "../../store/selectedPostSlice";
 
 const SelectedPost = () => {
-    const [result, setResult] = useState({title: '', image: '', description: ''})
     const navigate = useNavigate();
-    const path = useParams()
-    useEffect (() => {
-        fetch(`https://studapi.teachmeskills.by/blog/posts/${path.result}`)
-        .then((response) => response.json())
-        .then((json) => setResult((json)))
-    },[]);
-
-    // console.log(result.title)
+    const {postInfo, loading, error} = useSelector((state) => state.post);
+    const {id} = useParams()
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getPostInfo({id}))
+    }, [id]);
+    if(loading) {
+        return <div>Loading...</div>;
+    }
+    if (error) {
+        return <div>Error</div>
+    }
     return (
         <div className = {style.container}>
             <div className = {style.crumbs}>
                <button className = {style.btnHome} onClick = {() => navigate('/')}>Home</button>
-               <button className = {style.btnPost} onClick = {() => navigate('')}>Post {path.result}</button>
-            </div>      
-            <h1 className = {style.postTitle}>{result.title}</h1>
+               <button className = {style.btnPost} onClick = {() => navigate('')}>Post {id}</button>
+            </div>
+                
+            <h1 className = {style.postTitle}>{postInfo.title}</h1>
             <div className = {style.postImgWrap}>
-                <img className = {style.postImg} src={result.image}></img>
+                <img className = {style.postImg} src = {postInfo.image}></img>
             </div>
             <div className = {style.postTextWrap}>
-                <p className = {style.postText}>{result.description}</p>
+                <p className = {style.postText}>{postInfo.text}</p>
             </div>
             <div className = {style.wrap}>
                 <div className = {style.icons}>
@@ -47,26 +53,22 @@ const SelectedPost = () => {
             </div>
             <div className = {style.prevNextWrap}>
                 <div className = {style.prevWrap}>
-                    <div className = {style.arrowPrev}>
+                    <button className = {style.arrowPrev} onClick = {() => navigate(`/${postInfo.id-1}`)}>
                         <Prev />
-                    </div>
+                    </button>
                     <div className = {style.prevDescription}>
                         <span className = {style.prev}>Prev</span>
-                        <span className = {style.prevTitle}>8 Beautiful Villas Belonging to Artists You Need to See</span>
                     </div>
                 </div>
                 <div className = {style.prevWrap}>
                     <div className = {style.nextDescription}>
                         <span className = {style.next}>Next</span>
-                        <span className = {style.prevTitle}>10 Things to Know About Salvador Dalí</span>
                     </div>
-                    <div className = {style.arrowNext}>
+                    <button className = {style.arrowNext} onClick = {() => navigate(`/${postInfo.id+1}`)}>
                         <Next />
-                    </div>
+                    </button>
                 </div>                
             </div>
-
-            {/* <button onClick = {() => navigate(-1)}>Back</button> */}
         </div>
     )
 }

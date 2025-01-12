@@ -122,7 +122,11 @@
     height: 56px;
 }
 .arrowPrev{
-margin-right: 24px;
+    background-color: unset;
+    border: unset;
+    margin-right: 24px;
+    cursor: pointer;
+
 }
 .prevDescription {
     display: flex;
@@ -162,4 +166,8 @@ margin-right: 24px;
 }
 .arrowNext{
     margin-left: 24px;
-    }
+    border: unset;
+    background-color: unset;
+    cursor: pointer;
+
+}

@@ -4,7 +4,6 @@ import style from "./AddPost.module.scss";
 import { useDispatch } from "react-redux";
 import { addPost } from "../../store/addPostSlice";
 import ImageUploader from "../../Components/ImageUploader/ImageUploader";
-import Template from "../../Components/Template/Template";
 import Input from "../../Components/Input/Input";
 import Title from "../../Components/Title/Title";
 import Button from "../../Components/Button/Button";
@@ -49,6 +48,7 @@ const AddPost = () => {
       });
       setRemove(!remove);
     };
+    console.log(setFormData)
     return (
         <div className = {style.container}>
           <div className = {style.addPostHeader}>
