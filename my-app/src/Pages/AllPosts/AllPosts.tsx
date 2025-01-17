@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CardPostMiddle from "../../Components/CardPost/CardPostMiddle/CardPostMiddle";
 import CardPostSmall from "../../Components/CardPost/CardPostSmall/CardPostSmall";
-import Title from "../../Components/Title/Title";
 import style from './AllPosts.module.scss'
-import Tabs from "../../Components/Tabs/Tabs";
 import {ReactComponent as Prev} from "../../assets/prev.svg";
 import {ReactComponent as Next} from "../../assets/next.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,20 +37,6 @@ const AllPosts = () => {
     const handlerPageChange = (pageNumber: number) => {
         dispatch(setPage(pageNumber))
     }
-    // const handlerSubmit = (e:React.ChangeEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-    //     dispatch(fetchPosts>({
-    //         limit: itemsPerPage,
-    //         offset: 0,
-    //         searchQuery: searchQuery,
-    //         ordering: ordering,
-    //     }));
-    //     dispatch(setPage(1))
-    // }
-    // const handlerInput = (e:React.ChangeEvent<HTMLInputElement>) => {
-    //     const {value} = e.target
-    //     dispatch(setSearchQuery(value))
-    // }
     const handlerPrev = () => {
         if(currentPage > 1)
         dispatch(setPage(currentPage - 1))
@@ -61,9 +45,6 @@ const AllPosts = () => {
         if(currentPage < totalPage)
         dispatch(setPage(currentPage + 1))
     }
-    // const handlerOrdering = (e:React.ChangeEvent<HTMLSelectElement>) => {
-    //     dispatch(setOrdering(e.target.value))
-    // }
     const totalPage = Math.ceil(totalItems/itemsPerPage)
     const renderPageNumber = () => {
         const pageNumber = [];
@@ -73,7 +54,7 @@ const AllPosts = () => {
         for (let i = startPage; i <= endPage; i++) {
             pageNumber.push(
                 <button
-                style={{ color: i === currentPage ? "#2231AA" : "#313037" }}
+                style={{ color: i === currentPage && "#2231AA" }}
                 className = {style.page}
                 key={i}
                 onClick={() => handlerPageChange(i)}>
@@ -82,31 +63,47 @@ const AllPosts = () => {
             )
         };
         return pageNumber;
-    }  
+    };
+    const handlerOrdering = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setOrdering(e.target.value));
+    };
     return (
         <>
-            <div className = {style.postsWrap}>
-                <div className = {style.middlePostWrap}>
-                    {posts.map(({id, image, date, text, title, index}: IPost) => {
-                        return (
-                        <div key={id}>
-                            <CardPostMiddle id ={id} image ={image} date = {date} title = {title} />
-                        </div>)
-                    })}
+            <div className = {style.wrap}>
+                <div className = {style.ordering}>
+                    <label>Order by:</label>
+                    <select value={ordering} onChange={handlerOrdering}>
+                        <option value={''}>default</option>
+                        <option value={'title'}>title</option>
+                        <option value={'date'}>date</option>
+                        <option value={'text'}>text</option>
+                        <option value={'lesson_num'}>lesson_num</option>
+                   
+                    </select>
                 </div>
-                <div className = {style.smallPostWrap}>
-                    {posts.map(({id, image, date, text, title, index}: IPost) => {
-                        return (
+                <div className = {style.postsWrap}>
+                    <div className = {style.middlePostWrap}>
+                        {posts.map(({id, image, date, text, title, index, isFavorite}: IPost) => {
+                            return (
                             <div key={id}>
-                                <CardPostSmall id ={id} image ={image} date = {date} title = {title}/>
+                                <CardPostMiddle id ={id} image ={image} date = {date} title = {title} isFavorite = {isFavorite}/>
                             </div>)
-                    })}
+                        })}
+                    </div>
+                    <div className = {style.smallPostWrap}>
+                        {posts.map(({id, image, date, text, title, index}: IPost) => {
+                            return (
+                                <div key={id}>
+                                    <CardPostSmall id ={id} image ={image} date = {date} title = {title}/>
+                                </div>)
+                        })}
+                    </div>                    
                 </div>
             </div>
             <div className = {style.prevNextWrap}>
-                <div className = {style.prevWrap}>
+                <div className = {style.prevWrap} onClick = {handlerPrev} disabled = {currentPage === 1}>
                     <div className = {style.arrowPrev}>
-                        <Prev onClick = {handlerPrev} disabled = {currentPage === 1}/>
+                        <Prev/>
                     </div>
                     <div className = {style.prevDescription}>
                         <span className = {style.prev}>Prev</span>
@@ -115,12 +112,12 @@ const AllPosts = () => {
                 <div className = {style.pageNumbers}>
                     {renderPageNumber()}
                 </div>
-                <div className = {style.prevWrap}>
+                <div className = {style.prevWrap} onClick = {handlerNext} disabled = {currentPage === totalPage}>
                     <div className = {style.nextDescription}>
                         <span className = {style.next}>Next</span>
                     </div>
                     <div className = {style.arrowNext}>
-                        <Next onClick = {handlerNext} disabled = {currentPage === totalPage}/>
+                        <Next />
                     </div>
                 </div>                
             </div>

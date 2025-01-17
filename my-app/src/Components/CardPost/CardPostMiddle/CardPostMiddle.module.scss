@@ -4,11 +4,10 @@
     width: 352px;
     border-bottom: 1px solid #DADADA;
     margin-bottom: 20px;
-    // background-color: aqua;
 }
-// .wrapper.wrapperIsFavorite{
-//     background-color: red;
-// }
+.wrapper.active {
+    background-color: red;
+}
 .wraptextcontent {
     display: flex;
     flex-direction: column;

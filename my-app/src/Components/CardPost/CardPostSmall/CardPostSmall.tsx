@@ -15,7 +15,7 @@ interface IPost {
 }
 const CardPostSmall = ({date, title, image, id}: IPost) => {
     const navigate = useNavigate();;
-   const [popUpActive, setPopUpActive] = useState(false);
+    const [popUpActive, setPopUpActive] = useState(false);
     return (<>
         <div className = {style.wrapper}>
             <div className = {style.wrap}>

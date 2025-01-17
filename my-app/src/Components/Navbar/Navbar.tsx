@@ -38,9 +38,6 @@ const Navbar = () => {
                 </>
                )}
                 <NavLink to = '/' className = {style.menuPoint} onClick = {toggleSideBar}>All Posts</NavLink>
-
-
-
             </div>
             <div className = {style.menuBox}>
                 <div className = {style.buttonThemeWrap}>

@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './Profile.module.scss';
 import { useEffect } from 'react';
 import { getUserInfo } from '../../store/userMeSlice';
+import User from '../../Components/User/User';
+import { setPostInfo } from '../../store/selectedPostSlice';
 
 const Profile = () => {
     const {auth} = useSelector((state) => state.signIn);
@@ -9,7 +11,7 @@ const Profile = () => {
     const dispatch = useDispatch();
     useEffect(() =>{
         if(!auth) dispatch(getUserInfo())
-    }, [UserInfo]);
+    }, []);
     if(loading) {
         return <div>Loading...</div>;
     }
@@ -18,7 +20,8 @@ const Profile = () => {
     }
     return (
         <>
-        <div>{UserInfo.userName}</div>
+        <div>User here
+            {UserInfo.username}</div>
         </>
         
     )

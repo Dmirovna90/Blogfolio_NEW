@@ -8,7 +8,6 @@ const ImageUploader = ({ onImageSelect, remove }) => {
   const maxNumber = 1;
 
   const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
     console.log(imageList, addUpdateIndex);
     setImages(imageList);
     onImageSelect(imageList);
