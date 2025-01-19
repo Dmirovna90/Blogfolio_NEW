@@ -25,7 +25,7 @@ const Navbar = () => {
             <div className = {style.menuBox}>
                 {auth && (
                     <>
-                        <NavLink to = '/user' className = {style.userPoint} onClick = {toggleSideBar}><User userName= {'Artem Malkin'}/></NavLink>
+                        <NavLink to = '/user' className = {style.userPoint} onClick = {toggleSideBar}><User /></NavLink>
                     </>
                 )}
                 <NavLink to = '/' className = {style.menuPoint} onClick = {toggleSideBar}>Home</NavLink>

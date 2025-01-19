@@ -13,8 +13,19 @@
     align-items: center;
     width: 95%;
 }
+.userPointContainer{
+    width: 84px;
+    height: 8.3vh;
+    background-color: #2231AA;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;    
+}
 .userPoint {
     text-decoration: none;
     pointer-events: none;
     color: #fff;
+    width: 24px;
+    height: 24px;
+    margin: auto;
 }
