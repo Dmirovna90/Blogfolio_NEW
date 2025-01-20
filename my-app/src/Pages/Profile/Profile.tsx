@@ -13,7 +13,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!auth) dispatch(getUserInfo());
-  }, []);
+  }, [auth]);
   if (loading) {
     return <div>Loading...</div>;
   }

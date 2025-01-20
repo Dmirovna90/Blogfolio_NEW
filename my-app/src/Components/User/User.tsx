@@ -18,21 +18,19 @@ const User = () => {
     return username
       .split(" ")
       .map((item) => {
-        return item[0]
+        return item[0];
       })
       .join("");
   }, [username]);
   return (
-    <>
-      <div className={style.userwrap}>
-        <div className={style.initials}>
-          <span>{initials}</span>
-        </div>
-        <div className={style.username}>
-          <span>{username}</span>
-        </div>
+    <div className={style.userwrap}>
+      <div className={style.initials}>
+        <span>{initials}</span>
       </div>
-    </>
+      <div className={style.username}>
+        <span>{username}</span>
+      </div>
+    </div>
   );
 };
 export default User;
