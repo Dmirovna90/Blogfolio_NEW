@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const getMyPosts = createAsyncThunk(
+export const getMyPosts: any = createAsyncThunk(
     'myPosts/getMyPosts',
     async(objectFromMyPostsPage, {rejectWithValue}) => {
-        const {limit, offset, path}: any = objectFromMyPostsPage;
+        const {limit, offset, searchQuery, ordering}: any = objectFromMyPostsPage;
         try {
             const access = localStorage.getItem('access')
             const response = await fetch(
-                `https://studapi.teachmeskills.by/blog/posts/my_posts/?${path}&limit=${limit}&offset=${offset}`,
+                `https://studapi.teachmeskills.by/blog/posts/my_posts/?&limit=${limit}&offset=${offset}&ordering=${ordering}&search=${searchQuery}`,
                 {
                     method: "GET",
                     headers: {
-                    //   "Content-Type": "application/json",
+                        
                       Authorization: "Bearer " + JSON.parse(access as string),
                     },
                 }                
@@ -24,7 +24,7 @@ export const getMyPosts = createAsyncThunk(
                 throw new Error("error is here");
             }
             const data = await response.json();
-            return data.results;
+            return data;
         } catch (error) {
             return rejectWithValue((error as Error).message);
         }
@@ -39,19 +39,23 @@ const myPostsSlice = createSlice ({
         currentPage: 1,
         itemsPerPage: 10,
         totalItems: 0,
-        select: [],
+        ordering: '',
+        searchQuery: '',
         },
     reducers: {
         setPage: (state, action) => {
             state.currentPage = action.payload
         },
-        selectPost(state, action) {
-            state.select = action.payload;
+        setSearchQuery: (state, action) => {
+            state.searchQuery = action.payload
+        },
+        setOrdering: (state, action) => {
+            state.ordering = action.payload
         },       
     },
     extraReducers: (builder) => {
         builder.addCase(getMyPosts.fulfilled, (state, action) => {
-            (state.myPosts = action.payload), (state.isLoading = false), (state.totalItems = action.payload.count);
+            (state.myPosts = action.payload.results), (state.isLoading = false), (state.totalItems = action.payload.count);
         });
         builder.addCase(getMyPosts.pending, (state) => {
             (state.error = null), (state.isLoading = true);
@@ -62,5 +66,5 @@ const myPostsSlice = createSlice ({
         });        
     },
 });
-export const {setPage, selectPost} = myPostsSlice.actions;
+export const {setPage, setSearchQuery, setOrdering} = myPostsSlice.actions;
 export default  myPostsSlice.reducer

@@ -16,8 +16,6 @@ const SignIn = () => {
         email: '',
         password: '',
     });
-    // const { pathname } = (useLocation().state || { from: "/posts" }).from;
-
     const { auth } = useSelector((state) => state.signIn);
     const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -29,11 +27,6 @@ const SignIn = () => {
       e.preventDefault();
       dispatch(signInUser(loginData));
     };
-    // useEffect(() => {
-    //     if (auth) {
-    //         navigate(pathname, {replace: true});
-    //     }
-    // }, [auth])
     useEffect(() => {
         if (auth) {
             navigate('/my-posts', {replace: true});

@@ -5,8 +5,8 @@ import {ReactComponent as Down} from '../../../assets/down.svg';
 import {ReactComponent as Bookmark} from '../../../assets/bookmark.svg';
 import {ReactComponent as More} from '../../../assets/more.svg';
 import PopUp from "../../PopUp/PopUp";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getFavorite } from "../../../store/postsSlice";
 
 interface IPost {
@@ -18,12 +18,13 @@ interface IPost {
     index?: number;
     isFavorite?: boolean;
 }
-const CardPostMiddle = ({date, title, image, id, isFavorite}: IPost) => {
+const CardPostMiddle = ({date, title, image, id}: IPost) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [popUpActive, setPopUpActive] = useState(false);
+    const {isFavorite} = useSelector((state) => state.posts);
     return (<>
-        <div className={!isFavorite ? style.wrapper : `${style.wrapper} ${style.wrapperIsFavorite}`}>
+        <div className = {style.wrapper}>
             <div className = {style.wrapimg} onClick = {() => setPopUpActive(true)}>
                 <img className = {style.imgCard} src={image} ></img>
             </div>
@@ -33,7 +34,7 @@ const CardPostMiddle = ({date, title, image, id, isFavorite}: IPost) => {
             </div>
             <div className = {style.wrap}>
                 <div className = {style.icons}><Up className = {style.icon} /><Down /></div>
-                <div className = {style.icons}><button className = {style.iconBtn} onClick={() => dispatch(getFavorite())}><Bookmark className = {style.icon}/></button ><button className = {style.iconBtn}><More /></button></div>
+                <div className = {style.icons}><button className = {style.iconBtn} type = 'button' onClick={() => {dispatch(getFavorite({isFavorite}))}}><Bookmark className = {style.icon}/></button ><button className = {style.iconBtn}><More /></button></div>
             </div>
         </div>
         <PopUp open = {popUpActive} setOpen = {setPopUpActive}>

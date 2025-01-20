@@ -4,7 +4,7 @@ export const fetchPosts: any = createAsyncThunk('posts/fetchPosts', async(object
     const {limit, offset, searchQuery, ordering}: any = objectFromPostsPage;
     try {
         const response = await fetch(
-            `https://studapi.teachmeskills.by/blog/posts/?author__course_group=14&format=json&limit=${limit}&offset=${offset}&ordering=${ordering}$search=${searchQuery}`
+            `https://studapi.teachmeskills.by/blog/posts/?author__course_group=14&format=json&limit=${limit}&offset=${offset}&ordering=${ordering}&search=${searchQuery}`,
         );
         if(!response.ok) {
             throw new Error ('error')
@@ -26,7 +26,7 @@ const postsSlice = createSlice({
         ordering: '',
         loading: false,
         error: null as string | null,
-        isFavorite: false,
+        isFavorite: true,
     },
     reducers: {
         setPage: (state, action) => {
@@ -38,7 +38,7 @@ const postsSlice = createSlice({
         setOrdering: (state, action) => {
             state.ordering = action.payload
         },
-        getFavorite(state) {
+        getFavorite(state, action) {
             if(!state.isFavorite) state.isFavorite = true
             else state.isFavorite = false
         },
