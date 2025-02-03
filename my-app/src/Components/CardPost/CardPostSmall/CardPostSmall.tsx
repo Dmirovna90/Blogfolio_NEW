@@ -6,35 +6,52 @@ import {ReactComponent as Bookmark} from '../../../assets/bookmark.svg';
 import {ReactComponent as More} from '../../../assets/more.svg';
 import PopUp from "../../PopUp/PopUp";
 import { useState } from "react";
+import { IPost } from "../../../types";
+import { useDispatch } from "react-redux";
+import { getFavorite } from "../../../store/postsSlice";
 
-interface IPost {
-    id: number;
-    image?: string;
-    date: string;
-    title: string;
+interface ICard {
+  item: IPost;
 }
-const CardPostSmall = ({date, title, image, id}: IPost) => {
-    const navigate = useNavigate();;
+const CardPostSmall = ({item}: ICard) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [popUpActive, setPopUpActive] = useState(false);
     return (<>
         <div className = {style.wrapper}>
             <div className = {style.wrap}>
                 <div className = {style.wraptextcontent}>
-                    <p className = {style.date}>{date}</p>
-                    <h2 className = {style.title} onClick = {() => navigate(`${id}`)} >{title}</h2>
+                    <p className = {style.date}>{item.date}</p>
+                    <h2 className = {style.title} onClick = {() => navigate(`${item.id}`)} >{item.title}</h2>
                 </div>
                 <div className = {style.wrapimg} onClick = {() => setPopUpActive(true)}>
-                    <img className = {style.imgCard} src={image}></img>
+                    <img className = {style.imgCard} src={item.image}></img>
                 </div>
             </div>
-            <div className = {style.wrap}>
-                <div className = {style.icons}><Up className = {style.icon} /><Down /></div>
-                <div className = {style.icons}><Bookmark className = {style.icon}/><More /></div>
-            </div>
+            <div className={style.wrap}>
+          <div className={style.icons}>
+            <Up className={style.icon} />
+            <Down />
+          </div>
+          <div className={style.icons}>
+            <button
+              className={style.iconBtn}
+              type="button"
+              onClick={() => {
+                dispatch(getFavorite(item));
+              }}
+            >
+              <Bookmark className={style.icon} />
+            </button>
+            <button className={style.iconBtn}>
+              <More />
+            </button>
+          </div>
+        </div>
         </div>
         <PopUp open = {popUpActive} setOpen = {setPopUpActive}>
             <div className = {style.popup_wraping}>
-                <img className = {style.imgCard} src={image} ></img>
+                <img className = {style.imgCard} src={item.image} ></img>
                 </div>
         </PopUp>
         </>

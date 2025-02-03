@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CardPostMiddle from "../../Components/CardPost/CardPostMiddle/CardPostMiddle";
 import CardPostSmall from "../../Components/CardPost/CardPostSmall/CardPostSmall";
 import style from './AllPosts.module.scss'
@@ -7,15 +7,8 @@ import {ReactComponent as Next} from "../../assets/next.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, setOrdering, setPage, setSearchQuery } from "../../store/postsSlice";
 import { useNavigate } from "react-router-dom";
-interface IPost {
-    id: number;
-    image?: string;
-    text?: string;
-    date: string;
-    title: string;
-    index: number;
-    isFavorite: boolean;
-}
+import { IPost } from "../../types";
+
 const AllPosts = () => {
     const dispatch = useDispatch<any>();
     const navigate = useNavigate();
@@ -83,18 +76,18 @@ const AllPosts = () => {
                 </div>
                 <div className = {style.postsWrap}>
                     <div className = {style.middlePostWrap}>
-                        {posts.map(({id, image, date, text, title, index, isFavorite}: IPost) => {
+                        {posts.slice(0,6).map((favorite: IPost) => {
                             return (
-                            <div key={id}>
-                                <CardPostMiddle id ={id} image ={image} date = {date} title = {title} isFavorite = {isFavorite}/>
+                            <div key={favorite.id}>
+                                <CardPostMiddle key = {favorite.id} item={favorite}/>
                             </div>)
                         })}
                     </div>
                     <div className = {style.smallPostWrap}>
-                        {posts.map(({id, image, date, text, title, index}: IPost) => {
+                        {posts.slice(6,11).map((favorite: IPost) => {
                             return (
-                                <div key={id}>
-                                    <CardPostSmall id ={id} image ={image} date = {date} title = {title}/>
+                                <div key={favorite.id}>
+                                    <CardPostSmall key = {favorite.id} item={favorite}/>
                                 </div>)
                         })}
                     </div>                    

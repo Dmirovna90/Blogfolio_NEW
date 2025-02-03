@@ -4,7 +4,7 @@ import {ReactComponent as SearchImg} from '../../assets/search.svg';
 import SearchInput from '../SearchInput/SearchInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getMyPosts, setSearchQuery} from '../../store/myPostsSlice';
+import { getMyPosts, } from '../../store/myPostsSlice';
 
 const SearchMyPosts = () => {
       const { searchQuery, offset, ordering } = useSelector((state) => state.myPosts);
