@@ -27,9 +27,6 @@ const SignUp = ({uid, token}: any) => {
           [name]: value,
         }));
     };
-    // const signInHandler = () => {
-    //     navigate('/sign-in', {state: {from: location}});
-    // }
     const { pathname } = (useLocation().state || { from: `/activate/${uid}/${token}` }).from;
     const { activated } = useSelector((state) => state.user);
     const location = useLocation();
@@ -45,7 +42,7 @@ const SignUp = ({uid, token}: any) => {
                 <Input type={"text"} title={"Email"} placeholder={"Your Email"} name = {'email'} value = {registrationData.email} onChange = {inputHandler}/>
                 <Input type={"password"} title={"Password"} placeholder={"Your Password"} name = {'password'} value = {registrationData.password} onChange = {inputHandler}/>
                 {/* <Input type={"password"} title={"Confirm password"} placeholder={"Confirm password"} name = {'password'} value = {registraionData.password} onChange = {inputHandler}/> */}
-                <Button buttonType = {'primary'} type = {"submit"} click = {() => navigate(`/activate/${uid}/${token}`)}>Sign Up</Button>
+                <Button buttonType = {'primary'} type = {"submit"} >Sign Up</Button>
                 <p>Already have an account? <Link to = {'/sign-in'} className = {style.button}>Sign In</Link></p>  
             </form>
         

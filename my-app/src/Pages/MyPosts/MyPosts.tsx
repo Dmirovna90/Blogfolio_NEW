@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { setPage } from "../../store/myPostsSlice";
 import {ReactComponent as Prev} from '../../assets/prev.svg';
 import {ReactComponent as Next} from '../../assets/next.svg';
+import { setOrdering, setSearchQuery } from "../../store/myPostsSlice";
 interface IPost {
   id: number;
   image?: string;
@@ -17,15 +18,17 @@ interface IPost {
   index: number;
 }
 const MyPosts = () => {
-    const dispatch = useDispatch();
-    const {myPosts, isLoading, currentPage, itemsPerPage, totalItems} = useSelector((state) => state.myPosts);
+    const dispatch = useDispatch<any>();
+    const {myPosts, isLoading, currentPage, itemsPerPage, totalItems, searchQuery, ordering} = useSelector((state) => state.myPosts);
     const navigate = useNavigate();
     useEffect(() => {
         dispatch(getMyPosts({
           limit: itemsPerPage,
           offset: (currentPage - 1) * itemsPerPage,
-        }));
-    }, []);
+          searchQuery: searchQuery,
+          ordering: ordering,
+        }))
+    }, [currentPage, ordering]);
     const handlerPageChange = (pageNumber: number) => {
         dispatch(setPage(pageNumber))
     }
@@ -46,7 +49,7 @@ const MyPosts = () => {
       for (let i = startPage; i <= endPage; i++) {
           pageNumber.push(
               <button
-              style={{ color: i === currentPage ? "#2231AA" : "#313037" }}
+              style={{ color: i === currentPage && "#2231AA" }}
               className = {style.page}
               key={i}
               onClick={() => handlerPageChange(i)}>
@@ -55,7 +58,11 @@ const MyPosts = () => {
           )
       };
       return pageNumber;
-    }
+    };
+    const handlerOrdering = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      dispatch(setOrdering(e.target.value));
+    };
+
     return(
         <div className = {style.container}>
         {isLoading ? (
@@ -66,18 +73,30 @@ const MyPosts = () => {
                <button className = {style.btnHome} onClick = {() => navigate('/')}>Home</button>
             </div>  
             <Title title="My Posts"/>
-            <div className = {style.middlePostWrap}>
-                {myPosts.map(({id, image, date, text, title}: IPost) => {
-                  return (
-                    <div key={id}>
-                      <CardPostMiddle id ={id} image ={image} date = {date} title = {title} />
-                    </div>)
-                  })}
+            <div className = {style.wrap}>
+              <div className = {style.ordering}>
+                      <label>Order by:</label>
+                      <select value = {ordering} onChange={handlerOrdering}>
+                          <option value = {''}>default</option>
+                          <option value = {'title'}>title</option>
+                          <option value = {'date'}>date</option>
+                          <option value = {'text'}>text</option>
+                          <option value = {'lesson_num'}>lesson_num</option>                   
+                      </select>
+                </div>
+              <div className = {style.middlePostWrap}>
+                  {myPosts.map(({id, image, date, text, title}: IPost) => {
+                    return (
+                      <div key={id}>
+                        <CardPostMiddle id ={id} image ={image} date = {date} title = {title} />
+                      </div>)
+                    })}
+              </div>
             </div>
             <div className = {style.prevNextWrap}>
-                <div className = {style.prevWrap}>
+                <div className = {style.prevWrap} onClick = {handlerPrev} disabled = {currentPage === 1}>
                     <div className = {style.arrowPrev}>
-                        <Prev onClick = {handlerPrev} disabled = {currentPage === 1}/>
+                        <Prev />
                     </div>
                     <div className = {style.prevDescription}>
                         <span className = {style.prev}>Prev</span>
@@ -86,12 +105,12 @@ const MyPosts = () => {
                 <div className = {style.pageNumbers}>
                     {renderPageNumber()}
                 </div>
-                <div className = {style.prevWrap}>
+                <div className = {style.prevWrap} onClick = {handlerNext} disabled = {currentPage === totalPage}>
                     <div className = {style.nextDescription}>
                         <span className = {style.next}>Next</span>
                     </div>
                     <div className = {style.arrowNext}>
-                        <Next onClick = {handlerNext} disabled = {currentPage === totalPage}/>
+                        <Next />
                     </div>
                 </div>                
             </div>

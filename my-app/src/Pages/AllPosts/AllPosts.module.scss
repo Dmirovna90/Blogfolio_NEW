@@ -8,6 +8,17 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.wrap {
+    display: flex;
+    flex-direction: column;
+}
+.ordering {
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
 .middlePostWrap {
     display: flex;
     flex-direction: row;
@@ -29,6 +40,7 @@
     justify-content: space-between;
     align-items: center;
     height: 56px;
+    cursor: pointer;
 }
 .arrowPrev{
 margin-right: 24px;

@@ -52,19 +52,19 @@ const SelectedPost = () => {
                 </div>                    
             </div>
             <div className = {style.prevNextWrap}>
-                <div className = {style.prevWrap}>
-                    <button className = {style.arrowPrev} onClick = {() => navigate(`/${postInfo.id-1}`)}>
+                <div className = {style.prevWrap} onClick = {() => navigate(`/${postInfo.id-1}`)}>
+                    <button className = {style.arrowPrev} >
                         <Prev />
                     </button>
                     <div className = {style.prevDescription}>
                         <span className = {style.prev}>Prev</span>
                     </div>
                 </div>
-                <div className = {style.prevWrap}>
+                <div className = {style.prevWrap} onClick = {() => navigate(`/${postInfo.id+1}`)}>
                     <div className = {style.nextDescription}>
                         <span className = {style.next}>Next</span>
                     </div>
-                    <button className = {style.arrowNext} onClick = {() => navigate(`/${postInfo.id+1}`)}>
+                    <button className = {style.arrowNext} >
                         <Next />
                     </button>
                 </div>                
